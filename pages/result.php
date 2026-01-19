@@ -1,7 +1,5 @@
 <?php
 
-use BcMath\Number;
-
 $brl = $_REQUEST['brl'];
 
 $start_date = date("m/d/Y", strtotime("-7 days"));
