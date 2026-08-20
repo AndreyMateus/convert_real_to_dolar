@@ -1,92 +1,183 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="dark">
+<html lang="pt-br" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor de Real para Dólar</title>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Conversor BRL → USD</title>
 
-    <!-- Configuração do dark mode -->
-    <script>
-        tailwind.config = {
-            darkMode: 'class'
-        }
-    </script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5"
+        rel="stylesheet"
+        type="text/css" />
 
-    <!-- Remoção das setinhas do input number -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <style>
-        /* Chrome, Edge, Safari */
         input[type=number]::-webkit-inner-spin-button,
         input[type=number]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
 
-        /* Firefox */
         input[type=number] {
             -moz-appearance: textfield;
         }
     </style>
 </head>
 
-<body class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 transition-colors">
+<body class="min-h-screen bg-base-200 flex items-center justify-center p-4">
 
-    <main class="w-full max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 space-y-6">
+    <main class="w-full max-w-md">
 
-        <!-- Cabeçalho -->
-        <header class="space-y-2 text-center">
-            <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-                Conversor BRL → USD
-            </h1>
+        <div class="card bg-base-100 shadow-2xl border border-base-300">
 
-            <a
-                href="https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/aplicacao#!/recursos/CotacaoDolarPeriodo#eyJmb3JtdWxhcmlvIjp7IiRmb3JtYXQiOiJqc29uIiwiJHRvcCI6MTAwfX0="
-                target="_blank"
-                class="text-sm text-blue-600 dark:text-blue-400 hover:underline">
-                Utilizando dados do Banco Central
-            </a>
-        </header>
+            <div class="card-body p-7">
 
-        <!-- Formulário -->
-        <form action="/pages/result.php" method="GET" class="space-y-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Valor em Reais (BRL)
-                </label>
+                <!-- Cabeçalho -->
+                <header class="text-center mb-5">
 
-                <input
-                    type="number"
-                    step="0.5"
-                    name="brl"
-                    required
-                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600
-                           bg-gray-50 dark:bg-gray-700
-                           text-gray-900 dark:text-gray-100
-                           focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Exemplo: 120">
+                    <div class="flex justify-center mb-4">
+                        <div class="avatar placeholder">
+                            <div class="bg-primary text-primary-content rounded-full w-14">
+                                <span class="text-2xl">$</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 class="text-3xl font-bold tracking-tight">
+                        Conversor BRL → USD
+                    </h1>
+
+                    <p class="text-base-content/60 mt-2">
+                        Converta valores de reais para dólares
+                    </p>
+
+                    <a
+                        href="https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/aplicacao#!/recursos/CotacaoDolarPeriodo#eyJmb3JtdWxhcmlvIjp7IiRmb3JtYXQiOiJqc29uIiwiJHRvcCI6MTAwfX0="
+                        target="_blank"
+                        class="link link-primary text-sm inline-block mt-3">
+                        Cotação baseada no Banco Central
+                    </a>
+
+                </header>
+
+
+                <!-- Divisor -->
+                <div class="divider"></div>
+
+
+                <!-- Formulário -->
+                <form action="/pages/result.php" method="GET">
+
+                    <fieldset class="fieldset">
+
+                        <legend class="fieldset-legend text-base">
+                            Valor em Reais
+                        </legend>
+
+                        <label class="input input-lg input-bordered w-full">
+
+                            <span class="text-base-content/50 font-medium">
+                                R$
+                            </span>
+
+                            <input
+                                type="number"
+                                name="brl"
+                                step="0.5"
+                                min="0"
+                                required
+                                placeholder="120,00"
+                                class="grow" />
+
+                        </label>
+
+                        <p class="label text-base-content/50">
+                            Informe o valor que deseja converter.
+                        </p>
+
+                    </fieldset>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary btn-lg w-full mt-4">
+
+                        Calcular conversão
+
+                        <span class="text-lg">→</span>
+
+                    </button>
+
+                </form>
+
+
+                <!-- Rodapé -->
+                <div class="divider"></div>
+
+                <footer class="flex items-center justify-between">
+
+                    <span class="text-sm text-base-content/60">
+                        Tema
+                    </span>
+
+                    <label class="swap swap-rotate">
+
+                        <input
+                            type="checkbox"
+                            id="themeToggle"
+                            onchange="toggleTheme()" />
+
+                        <!-- Sol -->
+                        <svg
+                            class="swap-on fill-current w-5 h-5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+
+                            <path d="M5.64 17l-1.41 1.41L5.64 19.82l1.41-1.41L5.64 17zM12 4V1h-1v3h1zm6.36 13l1.41 1.41-1.41 1.41-1.41-1.41L18.36 17zM20 11v2h3v-2h-3zM4 11H1v2h3v-2zm8 4a3 3 0 100-6 3 3 0 000 6zm7.07-9.07l1.41-1.41L19.07 3.1l-1.41 1.41L19.07 5.93zM4.93 5.93L3.52 4.52 4.93 3.1l1.41 1.41L4.93 5.93z" />
+
+                        </svg>
+
+                        <!-- Lua -->
+                        <svg
+                            class="swap-off fill-current w-5 h-5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+
+                            <path d="M21.64 13a9 9 0 01-10.63 8.58A9 9 0 0110.42 4.36 7 7 0 0021.64 13z" />
+
+                        </svg>
+
+                    </label>
+
+                </footer>
+
             </div>
 
-            <button
-                type="submit"
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold
-                       py-2 rounded-lg transition">
-                Calcular
-            </button>
-        </form>
-
-        <!-- Dark mode toggle -->
-        <div class="flex justify-center">
-            <button
-                onclick="document.documentElement.classList.toggle('dark')"
-                class="text-sm text-gray-600 dark:text-gray-300 hover:underline">
-                Alternar tema 🌙 / ☀️
-            </button>
         </div>
 
+        <p class="text-center text-xs text-base-content/40 mt-4">
+            Conversão utilizando a cotação PTAX
+        </p>
+
     </main>
+
+
+    <script>
+        function toggleTheme() {
+
+            const html = document.documentElement;
+
+            const currentTheme = html.getAttribute("data-theme");
+
+            html.setAttribute(
+                "data-theme",
+                currentTheme === "dark" ? "light" : "dark"
+            );
+
+        }
+    </script>
 
 </body>
 
