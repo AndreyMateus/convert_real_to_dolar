@@ -5,26 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Conversor BRL → USD</title>
+    <title>Valor Inválido — Conversor BRL → USD</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5"
+    <!-- DaisyUI + Tailwind -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/daisyui@5"
         rel="stylesheet"
         type="text/css" />
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
 
     <style>
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
-
-
         .avatar-content {
             display: flex;
             justify-content: center;
@@ -42,87 +33,109 @@
             <div class="card-body p-7">
 
                 <!-- Cabeçalho -->
-                <header class="text-center mb-5">
+                <header class="text-center">
 
                     <div class="flex justify-center mb-4">
                         <div class="avatar placeholder">
-                            <div class="bg-primary text-primary-content rounded-full w-14 avatar-content">
-                                <span class="text-2xl">$</span>
+                            <div class="bg-error text-error-content rounded-full w-14 avatar-content">
+                                <span class="text-2xl">!</span>
                             </div>
                         </div>
                     </div>
 
                     <h1 class="text-3xl font-bold tracking-tight">
-                        Conversor BRL → USD
+                        Valor inválido
                     </h1>
 
                     <p class="text-base-content/60 mt-2">
-                        Converta valores de reais para dólares
+                        Não foi possível realizar a conversão
                     </p>
-
-                    <a
-                        href="https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/aplicacao#!/recursos/CotacaoDolarPeriodo#eyJmb3JtdWxhcmlvIjp7IiRmb3JtYXQiOiJqc29uIiwiJHRvcCI6MTAwfX0="
-                        target="_blank"
-                        class="link link-primary text-sm inline-block mt-3">
-                        Cotação baseada no Banco Central
-                    </a>
 
                 </header>
 
 
-                <!-- Divisor -->
                 <div class="divider"></div>
 
 
-                <!-- Formulário -->
-                <form action="/pages/result.php" method="GET">
+                <!-- Mensagem de erro -->
+                <div class="alert alert-error">
 
-                    <fieldset class="fieldset">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 shrink-0"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
 
-                        <legend class="fieldset-legend text-base">
-                            Valor em Reais
-                        </legend>
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 9v2m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z" />
 
-                        <label class="input input-lg input-bordered w-full">
+                    </svg>
 
-                            <span class="text-base-content/50 font-medium">
-                                R$
-                            </span>
+                    <div>
 
-                            <input
-                                type="number"
-                                name="brl"
-                                step="0.5"
-                                min="0"
-                                required
-                                placeholder="120,00"
-                                class="grow" />
+                        <h2 class="font-bold">
+                            O valor informado não é válido.
+                        </h2>
 
-                        </label>
-
-                        <p class="label text-base-content/50">
-                            Informe o valor que deseja converter.
+                        <p class="text-sm mt-1">
+                            Informe um valor numérico em reais para realizar a conversão.
                         </p>
 
-                    </fieldset>
+                    </div>
+
+                </div>
 
 
-                    <button
-                        type="submit"
-                        class="btn btn-primary btn-lg w-full mt-4">
+                <!-- Exemplo -->
+                <section class="bg-base-200 rounded-xl p-4 mt-5">
 
-                        Calcular conversão
+                    <p class="text-sm text-base-content/60">
+                        Exemplos de valores válidos:
+                    </p>
+
+                    <div class="flex flex-wrap gap-2 mt-3">
+
+                        <span class="badge badge-outline">
+                            100
+                        </span>
+
+                        <span class="badge badge-outline">
+                            250.50
+                        </span>
+
+                        <span class="badge badge-outline">
+                            1000
+                        </span>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Ação -->
+                <div class="mt-6">
+
+                    <a
+                        href="/"
+                        class="btn btn-primary btn-lg w-full">
+
+                        Voltar para conversão
 
                         <span class="text-lg">→</span>
 
-                    </button>
+                    </a>
 
-                </form>
+                </div>
 
 
-                <!-- Rodapé -->
                 <div class="divider"></div>
 
+
+                <!-- Tema -->
                 <footer class="flex items-center justify-between">
 
                     <span class="text-sm text-base-content/60">
@@ -164,8 +177,9 @@
 
         </div>
 
+
         <p class="text-center text-xs text-base-content/40 mt-4">
-            Conversão utilizando a cotação PTAX
+            Conversor BRL → USD
         </p>
 
     </main>

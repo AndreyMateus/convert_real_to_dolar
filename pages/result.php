@@ -2,16 +2,23 @@
 
 $brl = $_REQUEST['brl'] ?? '';
 
+if (!intval($brl)) {
+    include("./error.php");
+    die();
+}
+
 $dateTime = new Datetime();
-$start_date = $dateTime->modify("-7 days")->format('m-d-Y');
-$end_date = $dateTime->format('m-d-Y');
+$start_date = $dateTime->modify("-7 day")->format('m-d-Y');
+$end_date = (new DateTime())->format('m-d-Y');
 
 $urlAPI_bc = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial='" . $start_date . "'&@dataFinalCotacao='" . $end_date . "'&\$top=100&\$format=json&\$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao";
+
 
 $response = file_get_contents($urlAPI_bc);
 
 $responseToJson = json_decode($response, true);
 extract($responseToJson);
+
 
 $objectPrice = $value[0];
 
@@ -47,7 +54,15 @@ $newStyle_brl =  numfmt_format_currency($fmt_brl, $brl, "BRL");
         rel="stylesheet"
         type="text/css" />
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
+
+    <style>
+        .avatar-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body class="min-h-screen bg-base-200 flex items-center justify-center p-4">
@@ -63,7 +78,7 @@ $newStyle_brl =  numfmt_format_currency($fmt_brl, $brl, "BRL");
 
                     <div class="flex justify-center mb-4">
                         <div class="avatar placeholder">
-                            <div class="bg-primary text-primary-content rounded-full w-14">
+                            <div class="bg-primary text-primary-content rounded-full w-14 avatar-content">
                                 <span class="text-2xl">✓</span>
                             </div>
                         </div>
